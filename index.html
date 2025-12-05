@@ -3,47 +3,1261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Las 8 Diosas Interiores - Afirmaciones y Mantras</title>
-    <meta name="description" content="Tarjetas de afirmaciones y mantras para conectar con las 8 diosas interiores">
-    
-    <!-- React y ReactDOM -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    
-    <!-- Babel para JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
+    <title>Magic Tarot | Astrología, Energía y Bienestar Holístico</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
+        /* Variables de colores y fuentes */
+        :root {
+            --violeta-profundo: #2d1b69;
+            --azul-nocturno: #0f1a3a;
+            --dorado-suave: #d4af37;
+            --dorado-claro: #f4e8c1;
+            --blanco: #ffffff;
+            --blanco-humo: #f8f7fc;
+            --violeta-claro: #5d4a9a;
+            --neblina: rgba(255, 255, 255, 0.1);
+            --sombra: rgba(15, 26, 58, 0.2);
+        }
+
+        /* Reset y estilos base */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        
-        @media print {
-            .no-print {
-                display: none !important;
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            color: var(--blanco-humo);
+            background-color: var(--azul-nocturno);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            color: var(--dorado-claro);
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-weight: 300;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--dorado-suave), var(--dorado-claro));
+            color: var(--violeta-profundo);
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--dorado-suave);
+            color: var(--dorado-claro);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--dorado-suave), transparent);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Estrellas de fondo */
+        .stars-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .star {
+            position: absolute;
+            background-color: var(--blanco);
+            border-radius: 50%;
+        }
+
+        /* Patrones geométricos */
+        .geometric-pattern {
+            position: absolute;
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        /* HEADER con fondo astronómico */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 26, 58, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .header-scrolled {
+            background: rgba(15, 26, 58, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--dorado-claro);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 1.8rem;
+            color: var(--dorado-suave);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--blanco-humo);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-menu a:hover {
+            color: var(--dorado-suave);
+        }
+
+        .nav-menu a:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--dorado-suave);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dorado-claro);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Fondo astronómico del header */
+        .header-space-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            opacity: 0.6;
+        }
+
+        .space-bg-element {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--violeta-claro), transparent);
+            animation: float 15s infinite linear;
+        }
+
+        .nebula {
+            position: absolute;
+            background: radial-gradient(circle, rgba(93, 74, 154, 0.3), transparent 70%);
+            filter: blur(40px);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(360deg); }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(45, 27, 105, 0.85), rgba(15, 26, 58, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%"><stop offset="0%" style="stop-color:rgb(212,175,55);stop-opacity:0.2" /><stop offset="100%" style="stop-color:rgb(45,27,105);stop-opacity:0" /></radialGradient></defs><circle cx="50" cy="50" r="40" fill="url(%23grad1)"/></svg>');
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+            background-size: cover;
+        }
+
+        .hero:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(93, 74, 154, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 30%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: var(--blanco-humo);
+        }
+
+        /* Beneficios Section */
+        .benefits {
+            background-color: rgba(15, 26, 58, 0.7);
+            position: relative;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--dorado-suave);
+            margin-bottom: 20px;
+        }
+
+        /* Camino Energético Section */
+        .energy-path {
+            background: linear-gradient(to bottom, var(--azul-nocturno), var(--violeta-profundo));
+        }
+
+        .path-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .path-container {
+                grid-template-columns: 1fr;
             }
-            body {
-                margin: 0;
-                padding: 20px;
+        }
+
+        .problem-box, .solution-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .problem-box h3 {
+            color: #ff9e9e;
+        }
+
+        .solution-box h3 {
+            color: var(--dorado-claro);
+        }
+
+        .problem-list, .solution-list {
+            list-style: none;
+        }
+
+        .problem-list li, .solution-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .problem-list li:before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #ff9e9e;
+        }
+
+        .solution-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--dorado-suave);
+        }
+
+        /* Cómo funciona Section */
+        .how-it-works {
+            background-color: rgba(15, 26, 58, 0.7);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .step {
+            padding: 30px;
+            position: relative;
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dorado-suave);
+            opacity: 0.3;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* EBOOKS Section */
+        .ebooks {
+            background: linear-gradient(to bottom, var(--violeta-profundo), var(--azul-nocturno));
+        }
+
+        .ebooks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .ebook-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .ebook-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .ebook-cover {
+            height: 200px;
+            background: linear-gradient(135deg, var(--violeta-claro), var(--azul-nocturno));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+        }
+
+        .ebook-cover:before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 5px;
+        }
+
+        .ebook-symbol {
+            font-size: 4rem;
+            color: var(--dorado-claro);
+            opacity: 0.7;
+        }
+
+        .ebook-content {
+            padding: 25px;
+        }
+
+        .ebook-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            min-height: 70px;
+        }
+
+        /* Testimonios Section */
+        .testimonials {
+            background-color: rgba(15, 26, 58, 0.7);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 3px solid var(--dorado-suave);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            color: var(--dorado-claro);
+            font-weight: 600;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(to bottom, var(--azul-nocturno), var(--violeta-profundo));
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
             }
-            #goddess-card {
-                page-break-inside: avoid;
-                box-shadow: none !important;
+        }
+
+        .about-img {
+            position: relative;
+        }
+
+        .about-img:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--dorado-suave);
+            border-radius: 50%;
+            top: -15px;
+            left: -15px;
+            z-index: 1;
+        }
+
+        .profile-img {
+            width: 100%;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            filter: sepia(0.2) brightness(0.9);
+        }
+
+        /* FAQ Section */
+        .faq {
+            background-color: rgba(15, 26, 58, 0.7);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            color: var(--dorado-claro);
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            display: none;
+            padding-top: 10px;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* CTA Final Section */
+        .cta-final {
+            text-align: center;
+            background: linear-gradient(135deg, var(--violeta-profundo), var(--azul-nocturno));
+            padding: 100px 0;
+        }
+
+        .cta-final h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a1129;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--dorado-claro);
+            margin-bottom: 20px;
+        }
+
+        .footer-links h4, .footer-social h4 {
+            margin-bottom: 20px;
+            color: var(--dorado-claro);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--blanco-humo);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dorado-suave);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: var(--dorado-claro);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--dorado-suave);
+            color: var(--violeta-profundo);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(15, 26, 58, 0.98);
+                backdrop-filter: blur(10px);
+                z-index: 1001;
+                padding: 80px 30px 30px;
+                transition: right 0.5s ease;
+                border-left: 1px solid rgba(212, 175, 55, 0.2);
+            }
+
+            .mobile-nav.active {
+                right: 0;
+            }
+
+            .mobile-nav ul {
+                list-style: none;
+            }
+
+            .mobile-nav li {
+                margin-bottom: 20px;
+            }
+
+            .mobile-nav a {
+                color: var(--blanco-humo);
+                text-decoration: none;
+                font-size: 1.2rem;
+                display: block;
+                padding: 10px 0;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            }
+
+            .mobile-nav a:hover {
+                color: var(--dorado-suave);
+            }
+
+            .mobile-menu-close {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: none;
+                border: none;
+                color: var(--dorado-claro);
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .cta-final h2 {
+                font-size: 2rem;
+            }
+
+            .header-container {
+                padding: 15px 0;
+            }
+
+            .logo {
+                font-size: 1.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <div id="root"></div>
-    <script type="text/babel" src="app.js"></script>
+    <!-- Header con fondo astronómico -->
+    <header class="main-header" id="main-header">
+        <div class="header-space-bg" id="header-space-bg"></div>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <span class="logo-icon"><i class="fas fa-star-and-crescent"></i></span>
+                <span>Magic Tarot</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="desktop-nav">
+                <ul class="nav-menu">
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#benefits">Beneficios</a></li>
+                    <li><a href="#ebooks">eBooks</a></li>
+                    <li><a href="#about">Sobre Mí</a></li>
+                    <li><a href="#testimonials">Testimonios</a></li>
+                    <li><a href="#contact" class="btn-outline" style="padding: 8px 20px;">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Navegación móvil -->
+    <nav class="mobile-nav" id="mobile-nav">
+        <button class="mobile-menu-close" id="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul>
+            <li><a href="#hero">Inicio</a></li>
+            <li><a href="#benefits">Beneficios</a></li>
+            <li><a href="#energy-path">Camino Energético</a></li>
+            <li><a href="#how-it-works">Cómo Funciona</a></li>
+            <li><a href="#ebooks">eBooks</a></li>
+            <li><a href="#testimonials">Testimonios</a></li>
+            <li><a href="#about">Sobre Mí</a></li>
+            <li><a href="#faq">Preguntas Frecuentes</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="stars-bg" id="stars-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Descubre tu esencia cósmica, transforma tu realidad</h1>
+                <p>Conecta con la sabiduría del universo, equilibra tu energía y despierta tu potencial espiritual. Tu viaje de autoconocimiento y sanación holística comienza aquí.</p>
+                <a href="#ebooks" class="btn">Explorar eBooks</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios Section -->
+    <section class="benefits" id="benefits">
+        <div class="geometric-pattern" style="top: 10%; left: 5%; width: 100px; height: 100px; background-color: var(--dorado-suave); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);"></div>
+        <div class="container">
+            <h2 class="section-title">Beneficios de la Sabiduría Cósmica</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-star"></i></div>
+                    <h3>Claridad Espiritual</h3>
+                    <p>Entiende tus patrones energéticos y alinea tus decisiones con tu propósito de vida.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Equilibrio Emocional</h3>
+                    <p>Armoniza tus emociones y libera bloqueos energéticos para una vida más plena.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-moon"></i></div>
+                    <h3>Conexión con Ciclos</h3>
+                    <p>Sincronízate con los ritmos lunares y planetarios para fluir con el universo.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-seedling"></i></div>
+                    <h3>Crecimiento Personal</h3>
+                    <p>Desarrolla tu intuición y expande tu conciencia hacia nuevas dimensiones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Camino Energético Section -->
+    <section class="energy-path" id="energy-path">
+        <div class="container">
+            <h2 class="section-title">Tu Camino Energético</h2>
+            <div class="path-container">
+                <div class="problem-box">
+                    <h3>¿Sientes que algo falta?</h3>
+                    <ul class="problem-list">
+                        <li>Ansiedad y estrés que no encuentras cómo manejar</li>
+                        <li>Desconexión de tu propósito y pasiones</li>
+                        <li>Falta de claridad en decisiones importantes</li>
+                        <li>Sensación de estancamiento en áreas de tu vida</li>
+                        <li>Relaciones que no fluyen como deseas</li>
+                    </ul>
+                </div>
+                <div class="solution-box">
+                    <h3>La solución holística</h3>
+                    <p>La astrología y las herramientas energéticas ofrecen un mapa personalizado para entender tus desafíos y potenciales. A través del autoconocimiento astrológico, la sanación energética y prácticas espirituales, puedes transformar tu realidad desde la raíz.</p>
+                    <ul class="solution-list">
+                        <li>Interpreta tu carta natal como guía de vida</li>
+                        <li>Utiliza los ciclos lunares para manifestar</li>
+                        <li>Equilibra tus chakras y energía vital</li>
+                        <li>Conecta con tu intuición y sabiduría interna</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cómo funciona Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="geometric-pattern" style="bottom: 10%; right: 5%; width: 150px; height: 150px; background-color: var(--violeta-claro); clip-path: circle(50% at 50% 50%);"></div>
+        <div class="container">
+            <h2 class="section-title">Cómo Funciona</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <h3>Explora</h3>
+                    <p>Selecciona los recursos que resuenen con tu momento vital actual. Cada ebook está diseñado para guiarte en aspectos específicos de tu camino espiritual.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <h3>Integra</h3>
+                    <p>Aplica las prácticas, rituales y conocimientos compartidos en tu vida diaria. Pequeños cambios consistentes generan transformaciones profundas.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <h3>Transforma</h3>
+                    <p>Observa cómo tu perspectiva se expande, tu energía se equilibra y tu conexión con el universo se fortalece. Vive una vida alineada con tu esencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EBOOKS Section -->
+    <section class="ebooks" id="ebooks">
+        <div class="container">
+            <h2 class="section-title">Biblioteca de Sabiduría Cósmica</h2>
+            <div class="ebooks-grid">
+                <!-- Ebook 1 -->
+                <div class="ebook-card">
+                    <div class="ebook-cover">
+                        <div class="ebook-symbol"><i class="fas fa-sun"></i></div>
+                    </div>
+                    <div class="ebook-content">
+                        <h3 class="ebook-title">Astrología para Principiantes: Tu Guía Esencial</h3>
+                        <p>Aprende a interpretar tu carta natal, signos solares, ascendentes y las energías planetarias que influyen en tu vida.</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">Ver más</a>
+                    </div>
+                </div>
+                <!-- Ebook 2 -->
+                <div class="ebook-card">
+                    <div class="ebook-cover">
+                        <div class="ebook-symbol"><i class="fas fa-moon"></i></div>
+                    </div>
+                    <div class="ebook-content">
+                        <h3 class="ebook-title">Ciclos Lunares y Manifestación</h3>
+                        <p>Aprovecha las fases lunares para establecer intenciones, rituales de manifestación y sincronización con la energía cósmica.</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">Ver más</a>
+                    </div>
+                </div>
+                <!-- Ebook 3 -->
+                <div class="ebook-card">
+                    <div class="ebook-cover">
+                        <div class="ebook-symbol"><i class="fas fa-star-and-crescent"></i></div>
+                    </div>
+                    <div class="ebook-content">
+                        <h3 class="ebook-title">Chakras y Astrología: Conexión Energética</h3>
+                        <p>Descubre cómo los planetas influyen en tus centros energéticos y técnicas para equilibrarlos.</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">Ver más</a>
+                    </div>
+                </div>
+                <!-- Ebook 4 -->
+                <div class="ebook-card">
+                    <div class="ebook-cover">
+                        <div class="ebook-symbol"><i class="fas fa-hand-sparkles"></i></div>
+                    </div>
+                    <div class="ebook-content">
+                        <h3 class="ebook-title">Rituales de Sanación Energética</h3>
+                        <p>Guía práctica de rituales, cristales, velas y herramientas para limpiar y fortalecer tu campo energético.</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">Ver más</a>
+                    </div>
+                </div>
+                <!-- Ebook 5 -->
+                <div class="ebook-card">
+                    <div class="ebook-cover">
+                        <div class="ebook-symbol"><i class="fas fa-infinity"></i></div>
+                    </div>
+                    <div class="ebook-content">
+                        <h3 class="ebook-title">Karma y Astrología: Lecciones del Alma</h3>
+                        <p>Explora los nodos lunares, lecciones kármicas y patrones de vidas pasadas en tu carta natal.</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">Ver más</a>
+                    </div>
+                </div>
+                <!-- Ebook 6 -->
+                <div class="ebook-card">
+                    <div class="ebook-cover">
+                        <div class="ebook-symbol"><i class="fas fa-feather-alt"></i></div>
+                    </div>
+                    <div class="ebook-content">
+                        <h3 class="ebook-title">Meditaciones Guiadas por Signos</h3>
+                        <p>Colección de meditaciones específicas para cada signo zodiacal, enfocadas en sus desafíos y dones únicos.</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">Ver más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Testimonios</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Los ebooks de astrología me dieron claridad en un momento de confusión total. Ahono entiendo mis ciclos y vivo con más paz y propósito."</p>
+                    <p class="testimonial-author">— Marina G., Barcelona</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"La guía de ciclos lunares transformó mi forma de establecer metas. He manifestado cambios que parecían imposibles. ¡Gracias!"</p>
+                    <p class="testimonial-author">— Sofía R., México DF</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Como principiante en astrología, los recursos fueron increíblemente accesibles. Finalmente entiendo mi carta natal y me siento empoderada."</p>
+                    <p class="testimonial-author">— Elena V., Buenos Aires</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Sobre Mí</h2>
+            <div class="about-container">
+                <div class="about-img">
+                    <!-- Imagen de perfil simulada -->
+                    <div class="profile-img" style="height: 300px; background: linear-gradient(135deg, var(--violeta-claro), var(--azul-nocturno)); display: flex; align-items: center; justify-content: center; color: var(--dorado-claro); font-size: 5rem;">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>Hola, soy Alba</h3>
+                    <p>Desde pequeña sentí una profunda conexión con los ciclos de la luna y las estrellas. Lo que comenzó como curiosidad se transformó en una pasión por estudiar la sabiduría ancestral de la astrología y las herramientas energéticas.</p>
+                    <p>Durante más de 10 años he dedicado mi vida a integrar conocimientos de astrología, sanación energética y espiritualidad, creando puentes entre el cosmos y nuestro mundo interior.</p>
+                    <p>Mi misión es guiarte para que descubras tu mapa único, equilibres tu energía y vivas una vida alineada con tu esencia más auténtica. Creo firmemente que cada persona tiene un propósito cósmico y juntos podemos desvelarlo.</p>
+                    <p>Te invito a que emprendamos este viaje de autodescubrimiento y transformación.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <div class="faq-container">
+                <div class="faq-item active">
+                    <div class="faq-question">¿Necesito conocimientos previos de astrología? <span>+</span></div>
+                    <div class="faq-answer">No, todos mis recursos están diseñados para ser accesibles. Incluyo guías para principiantes y explicaciones claras de los conceptos astrológicos básicos.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Los ebooks son físicos o digitales? <span>+</span></div>
+                    <div class="faq-answer">Todos los ebooks son digitales (formato PDF), para que puedas acceder a ellos inmediatamente después de la compra y llevarlos contigo en cualquier dispositivo.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Qué necesito para comenzar con la astrología? <span>+</span></div>
+                    <div class="faq-answer">Solo necesitas tu fecha, hora y lugar de nacimiento para calcular tu carta natal. El resto lo proporcionamos en las guías, incluyendo explicaciones paso a paso.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Ofreces consultas personalizadas? <span>+</span></div>
+                    <div class="faq-answer">Sí, además de los ebooks, ofrezco lecturas de cartas natales personalizadas. Puedes contactarme a través del formulario en la sección de contacto.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Cómo sé qué ebook es el adecuado para mí? <span>+</span></div>
+                    <div class="faq-answer">Cada ebook incluye una descripción detallada de su contenido. Si tienes dudas, puedes escribirme y te ayudo a identificar cuál se alinea mejor con tu momento actual.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final Section -->
+    <section class="cta-final">
+        <div class="container">
+            <h2>Tu Transformación Espiritual Comienza Aquí</h2>
+            <p>Descubre la sabiduría del cosmos y da el primer paso hacia una vida más consciente y alineada.</p>
+            <a href="#ebooks" class="btn" style="margin-top: 30px;">Comenzar Mi Viaje</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">Magic Tarot</div>
+                    <p>Astrología, energía y bienestar holístico para tu transformación interior.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="#hero">Inicio</a></li>
+                        <li><a href="#ebooks">eBooks</a></li>
+                        <li><a href="#about">Sobre mí</a></li>
+                        <li><a href="#testimonials">Testimonios</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Sígueme</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <p style="margin-top: 20px;">contacto@magictarot.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Magic Tarot. Todos los derechos reservados.</p>
+                <p><a href="#" style="color: rgba(255,255,255,0.5);">Política de privacidad</a> | <a href="#" style="color: rgba(255,255,255,0.5);">Términos y condiciones</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Crear estrellas de fondo
+        document.addEventListener('DOMContentLoaded', function() {
+            const starsBg = document.getElementById('stars-bg');
+            const starsCount = 150;
+            
+            for (let i = 0; i < starsCount; i++) {
+                createStar(starsBg);
+            }
+            
+            // Crear elementos astronómicos para el header
+            const headerSpaceBg = document.getElementById('header-space-bg');
+            createSpaceBackground(headerSpaceBg);
+            
+            // Añadir estilo de animación para las estrellas
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes twinkle {
+                    0% { opacity: 0.3; }
+                    100% { opacity: 1; }
+                }
+                @keyframes float {
+                    0% { transform: translateY(0) rotate(0deg); }
+                    100% { transform: translateY(-1000px) rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // FAQ interactivo
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentElement;
+                    item.classList.toggle('active');
+                    
+                    // Cambiar el símbolo
+                    const span = question.querySelector('span');
+                    span.textContent = item.classList.contains('active') ? '−' : '+';
+                });
+            });
+            
+            // Header scroll effect
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+            });
+            
+            // Mobile menu
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileNav = document.getElementById('mobile-nav');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileNav.classList.add('active');
+            });
+            
+            mobileMenuClose.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+            });
+            
+            // Cerrar menú al hacer clic en un enlace
+            const mobileNavLinks = mobileNav.querySelectorAll('a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileNav.classList.remove('active');
+                });
+            });
+            
+            // Smooth scroll para enlaces internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+        
+        // Función para crear estrellas
+        function createStar(container) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            
+            // Tamaño aleatorio
+            const size = Math.random() * 3 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            
+            // Posición aleatoria
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            
+            // Opacidad aleatoria
+            star.style.opacity = Math.random() * 0.7 + 0.3;
+            
+            // Animación de parpadeo
+            const duration = Math.random() * 5 + 3;
+            star.style.animation = `twinkle ${duration}s infinite alternate`;
+            
+            container.appendChild(star);
+        }
+        
+        // Función para crear fondo espacial en el header
+        function createSpaceBackground(container) {
+            // Crear nebulosas
+            for (let i = 0; i < 5; i++) {
+                const nebula = document.createElement('div');
+                nebula.classList.add('nebula');
+                
+                const size = Math.random() * 200 + 100;
+                nebula.style.width = `${size}px`;
+                nebula.style.height = `${size}px`;
+                nebula.style.left = `${Math.random() * 100}%`;
+                nebula.style.top = `${Math.random() * 100}%`;
+                nebula.style.opacity = Math.random() * 0.3 + 0.1;
+                
+                container.appendChild(nebula);
+            }
+            
+            // Crear elementos espaciales flotantes
+            for (let i = 0; i < 15; i++) {
+                const spaceElement = document.createElement('div');
+                spaceElement.classList.add('space-bg-element');
+                
+                const size = Math.random() * 10 + 2;
+                spaceElement.style.width = `${size}px`;
+                spaceElement.style.height = `${size}px`;
+                spaceElement.style.left = `${Math.random() * 100}%`;
+                spaceElement.style.top = `${Math.random() * 100}%`;
+                spaceElement.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                // Color aleatorio (dorado, violeta, azul)
+                const colors = [
+                    'rgba(212, 175, 55, 0.6)',
+                    'rgba(93, 74, 154, 0.6)',
+                    'rgba(15, 26, 58, 0.6)',
+                    'rgba(255, 255, 255, 0.6)'
+                ];
+                const colorIndex = Math.floor(Math.random() * colors.length);
+                spaceElement.style.background = `radial-gradient(circle, ${colors[colorIndex]}, transparent)`;
+                
+                // Animación
+                const duration = Math.random() * 30 + 20;
+                const delay = Math.random() * 5;
+                spaceElement.style.animation = `float ${duration}s infinite linear`;
+                spaceElement.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(spaceElement);
+            }
+        }
+    </script>
 </body>
 </html>
