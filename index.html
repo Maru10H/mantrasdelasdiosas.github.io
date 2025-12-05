@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Tarot | Astrología, Energía y Bienestar Holístico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --violeta-profundo: #2d1b69;
+            --azul-nocturno: #0f1a3a;
+            --dorado-suave: #d4af37;
+            --dorado-claro: #f4e8c1;
+            --blanco: #ffffff;
+            --blanco-humo: #f8f7fc;
+            --violeta-claro: #5d4a9a;
+            --neblina: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            color: var(--blanco-humo);
+            background-color: var(--azul-nocturno);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* TÍTULOS CON TAMAÑO AUMENTADO */
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            color: var(--dorado-claro);
+            margin-bottom: 1.5rem;
+            font-size: 3.8rem;
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            color: var(--dorado-claro);
+            margin-bottom: 2rem;
+            font-size: 2.8rem;
+        }
+
+        h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            color: var(--dorado-claro);
+            margin-bottom: 1.2rem;
+            font-size: 2.2rem;
+        }
+
+        h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            color: var(--dorado-claro);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--dorado-suave), var(--dorado-claro));
+            color: var(--violeta-profundo);
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--dorado-suave);
+            color: var(--dorado-claro);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            font-size: 3rem;
+        }
+
+        .section-title:after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--dorado-suave), transparent);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* HEADER CON FONDO ASTRONÓMICO */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 26, 58, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .header-scrolled {
+            background: rgba(15, 26, 58, 0.97);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            padding: 5px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dorado-claro);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            z-index: 1002;
+        }
+
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 1.8rem;
+            color: var(--dorado-suave);
+        }
+
+        /* NAVEGACIÓN PRINCIPAL */
+        .nav-desktop {
+            display: flex;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu li {
+            margin-left: 25px;
+        }
+
+        .nav-menu a {
+            color: var(--blanco-humo);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-menu a:hover {
+            color: var(--dorado-suave);
+        }
+
+        .nav-menu a:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--dorado-suave);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+
+        /* BOTÓN MENÚ MÓVIL */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dorado-claro);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1002;
+            padding: 5px;
+        }
+
+        /* MENÚ MÓVIL */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: rgba(15, 26, 58, 0.98);
+            backdrop-filter: blur(15px);
+            z-index: 1001;
+            padding: 100px 30px 50px;
+            transition: right 0.5s ease;
+            border-left: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            width: 100%;
+        }
+
+        .mobile-nav li {
+            margin-bottom: 15px;
+        }
+
+        .mobile-nav a {
+            color: var(--blanco-humo);
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .mobile-nav a:hover,
+        .mobile-nav a:focus {
+            color: var(--dorado-suave);
+            background-color: rgba(212, 175, 55, 0.1);
+            border-left-color: var(--dorado-suave);
+            padding-left: 20px;
+        }
+
+        .mobile-nav .btn-outline {
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid var(--dorado-suave);
+            color: var(--dorado-claro);
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: var(--dorado-claro);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu-close:hover {
+            transform: rotate(90deg);
+            color: var(--dorado-suave);
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Estrellas de fondo */
+        .stars-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .star {
+            position: absolute;
+            background-color: var(--blanco);
+            border-radius: 50%;
+        }
+
+        /* Patrones geométricos */
+        .geometric-pattern {
+            position: absolute;
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(45, 27, 105, 0.85), rgba(15, 26, 58, 0.9));
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+
+        .hero:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(93, 74, 154, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 30%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: var(--blanco-humo);
+        }
+
+        /* Beneficios Section */
+        .benefits {
+            background-color: rgba(15, 26, 58, 0.7);
+            position: relative;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .benefit-card h3 {
+            font-size: 2rem;
+            min-height: auto;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--dorado-suave);
+            margin-bottom: 20px;
+        }
+
+        /* Camino Energético Section */
+        .energy-path {
+            background: linear-gradient(to bottom, var(--azul-nocturno), var(--violeta-profundo));
+        }
+
+        .path-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .path-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .problem-box, .solution-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .problem-box h3 {
+            color: #ff9e9e;
+            font-size: 2rem;
+        }
+
+        .solution-box h3 {
+            color: var(--dorado-claro);
+            font-size: 2rem;
+        }
+
+        .problem-list, .solution-list {
+            list-style: none;
+        }
+
+        .problem-list li, .solution-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .problem-list li:before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #ff9e9e;
+        }
+
+        .solution-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--dorado-suave);
+        }
+
+        /* Cómo funciona Section */
+        .how-it-works {
+            background-color: rgba(15, 26, 58, 0.7);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .step {
+            padding: 30px;
+            position: relative;
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dorado-suave);
+            opacity: 0.3;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* EBOOKS Section con IMAGEN DE FONDO */
+        .ebooks {
+            background: 
+                linear-gradient(rgba(45, 27, 105, 0.85), rgba(15, 26, 58, 0.9)), 
+                url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        /* Fallback en caso de que la imagen no cargue */
+        .ebooks:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--violeta-profundo), var(--azul-nocturno));
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        .ebooks .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .ebooks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .ebook-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .ebook-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .ebook-cover {
+            height: 200px;
+            background: linear-gradient(135deg, var(--violeta-claro), var(--azul-nocturno));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+        }
+
+        .ebook-cover:before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 5px;
+        }
+
+        .ebook-symbol {
+            font-size: 4rem;
+            color: var(--dorado-claro);
+            opacity: 0.7;
+        }
+
+        .ebook-content {
+            padding: 25px;
+        }
+
+        .ebook-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            min-height: 90px;
+        }
+
+        /* Testimonios Section */
+        .testimonials {
+            background-color: rgba(15, 26, 58, 0.7);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 3px solid var(--dorado-suave);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            color: var(--dorado-claro);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(to bottom, var(--azul-nocturno), var(--violeta-profundo));
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-img {
+            position: relative;
+        }
+
+        .about-img:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--dorado-suave);
+            border-radius: 50%;
+            top: -15px;
+            left: -15px;
+            z-index: 1;
+        }
+
+        .profile-img {
+            width: 100%;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            filter: sepia(0.2) brightness(0.9);
+        }
+
+        .about-text h3 {
+            font-size: 2.4rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background-color: rgba(15, 26, 58, 0.7);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .faq-question {
+            font-size: 1.3rem;
+            color: var(--dorado-claro);
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            display: none;
+            padding-top: 10px;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* CTA Final Section */
+        .cta-final {
+            text-align: center;
+            background: linear-gradient(135deg, var(--violeta-profundo), var(--azul-nocturno));
+            padding: 100px 0;
+        }
+
+        .cta-final h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a1129;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            color: var(--dorado-claro);
+            margin-bottom: 20px;
+        }
+
+        .footer-links h4, .footer-social h4 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: var(--dorado-claro);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--blanco-humo);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dorado-suave);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: var(--dorado-claro);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--dorado-suave);
+            color: var(--violeta-profundo);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Estilos para los covers de ebooks con imágenes */
+.ebook-cover {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.ebook-cover:before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.ebook-title-overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 15px;
+    background: rgba(15, 26, 58, 0.7);
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    max-width: 90%;
+}
+
+.ebook-title-cover {
+    font-size: 1.5rem;
+    color: var(--dorado-claro);
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Efecto hover para los covers */
+.ebook-card:hover .ebook-cover:before {
+    border-color: rgba(212, 175, 55, 0.4);
+}
+
+.ebook-card:hover .ebook-title-overlay {
+    background: rgba(15, 26, 58, 0.8);
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-desktop {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .header-container {
+                padding: 12px 0;
+            }
+
+            h1 {
+                font-size: 3.2rem;
+            }
+            
+            h2 {
+                font-size: 2.4rem;
+            }
+            
+            h3 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2.6rem;
+                margin-bottom: 50px;
+            }
+            
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.7rem;
+            }
+
+            .mobile-nav {
+                width: 250px;
+                padding: 90px 20px 40px;
+            }
+
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+            
+            h1 {
+                font-size: 2.6rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            h3 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+                margin-bottom: 40px;
+            }
+            
+            .benefit-card h3 {
+                font-size: 1.8rem;
+            }
+            
+            .ebook-title {
+                font-size: 1.6rem;
+                min-height: 80px;
+            }
+            
+            .cta-final h2 {
+                font-size: 2.5rem;
+            }
+
+            .ebooks {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header con fondo astronómico -->
+    <header class="main-header" id="main-header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <span class="logo-icon"><i class="fas fa-star-and-crescent"></i></span>
+                <span>Magic Tarot</span>
+            </a>
+            
+            <!-- Navegación Desktop -->
+            <nav class="nav-desktop">
+                <ul class="nav-menu">
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#benefits">Beneficios</a></li>
+                    <li><a href="#ebooks">eBooks</a></li>
+                    <li><a href="#about">Sobre Mí</a></li>
+                    <li><a href="#testimonials">Testimonios</a></li>
+                    <li><a href="#contact" class="btn-outline">Contacto</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Botón Menú Móvil -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Overlay para cerrar menú -->
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <!-- Menú Móvil -->
+    <nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
+        <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Cerrar menú">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul>
+            <li><a href="#hero">Inicio</a></li>
+            <li><a href="#benefits">Beneficios</a></li>
+            <li><a href="#energy-path">Camino Energético</a></li>
+            <li><a href="#how-it-works">Cómo Funciona</a></li>
+            <li><a href="#ebooks">eBooks</a></li>
+            <li><a href="#testimonials">Testimonios</a></li>
+            <li><a href="#about">Sobre Mí</a></li>
+            <li><a href="#faq">Preguntas Frecuentes</a></li>
+            <li><a href="#contact" class="btn-outline">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="stars-bg" id="stars-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Despierta tu Luz Interior</h1>
+                <p>Descubre el poder transformador de la astrología, la energía y el autoconocimiento profundo</p>
+                <a href="#ebooks" class="btn">Explorar eBooks</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios Section -->
+    <section class="benefits" id="benefits">
+        <div class="geometric-pattern" style="top: 10%; left: 5%; width: 100px; height: 100px; background-color: var(--dorado-suave); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);"></div>
+        <div class="container">
+            <h2 class="section-title">Beneficios</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-star"></i></div>
+                    <h3>Claridad Espiritual</h3>
+                    <p>Entiende tus patrones energéticos y alinea tus decisiones con tu propósito de vida.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Equilibrio Emocional</h3>
+                    <p>Armoniza tus emociones y libera bloqueos energéticos para una vida más plena.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-moon"></i></div>
+                    <h3>Conexión con Ciclos</h3>
+                    <p>Sincronízate con los ritmos lunares y planetarios para fluir con el universo.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-seedling"></i></div>
+                    <h3>Crecimiento Personal</h3>
+                    <p>Desarrolla tu intuición y expande tu conciencia hacia nuevas dimensiones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Camino Energético Section -->
+    <section class="energy-path" id="energy-path">
+        <div class="container">
+            <h2 class="section-title">Tu Camino Energético</h2>
+            <div class="path-container">
+                <div class="problem-box">
+                    <h3>¿Sientes que algo falta?</h3>
+                    <ul class="problem-list">
+                        <li>Ansiedad y estrés que no encuentras cómo manejar</li>
+                        <li>Desconexión de tu propósito y pasiones</li>
+                        <li>Falta de claridad en decisiones importantes</li>
+                        <li>Sensación de estancamiento en áreas de tu vida</li>
+                        <li>Relaciones que no fluyen como deseas</li>
+                    </ul>
+                </div>
+                <div class="solution-box">
+                    <h3>La solución holística</h3>
+                    <p>El tarot y las herramientas energéticas ofrecen un mapa personalizado para entender tus desafíos y potenciales. A través del autoconocimiento, la sanación energética y prácticas espirituales, puedes transformar tu realidad desde la raíz.</p>
+                    <ul class="solution-list">
+                        <li>Interpreta las cartas como guía de vida</li>
+                        <li>Utiliza los ciclos lunares para manifestar</li>
+                        <li>Equilibra tus chakras y energía vital</li>
+                        <li>Conecta con tu intuición y sabiduría interna</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cómo funciona Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="geometric-pattern" style="bottom: 10%; right: 5%; width: 150px; height: 150px; background-color: var(--violeta-claro); clip-path: circle(50% at 50% 50%);"></div>
+        <div class="container">
+            <h2 class="section-title">Cómo Funciona</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <h3>Explora</h3>
+                    <p>Selecciona los recursos que resuenen con tu momento vital actual. Cada ebook está diseñado para guiarte en aspectos específicos de tu camino espiritual.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <h3>Integra</h3>
+                    <p>Aplica las prácticas, rituales y conocimientos compartidos en tu vida diaria. Pequeños cambios consistentes generan transformaciones profundas.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <h3>Transforma</h3>
+                    <p>Observa cómo tu perspectiva se expande, tu energía se equilibra y tu conexión con el universo se fortalece. Vive una vida alineada con tu esencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EBOOKS Section con imagen de fondo -->
+    <!-- EBOOKS Section con imagen de fondo -->
+<section class="ebooks" id="ebooks">
+    <div class="container">
+        <h2 class="section-title">Biblioteca de Sabiduría Mágica</h2>
+        <div class="ebooks-grid">
+            <!-- Ebook 1 -->
+            <div class="ebook-card">
+                <div class="ebook-cover" style="background: linear-gradient(rgba(45, 27, 105, 0.7), rgba(15, 26, 58, 0.7)); background-size: cover; background-position: center">
+                    <img src="Gemini_Generated_Image_kdxy58kdxy58kdxy.png" alt="Las 8 Diosas" width="300">
+
+                </div>
+                <div class="ebook-content">
+                    <h3 class="ebook-title">Las 8 Diosas que habitan en tí</h3>
+                    <p>Un mapa suave, espiritual y profundo para reencontrarte con tu calma, tu esencia y los pequeños momentos de disfrute que tu alma está necesitando.</p>
+                    <a href="https://salmon-gnu-511833.hostingersite.com/" class="btn btn-outline" style="width: 100%; text-align: center;">Ver más</a>
+                </div>
+            </div>
+            <!-- Ebook 2 -->
+            <div class="ebook-card">
+                <div class="ebook-cover" style="background: linear-gradient(rgba(45, 27, 105, 0.7), rgba(15, 26, 58, 0.7)); background-size: cover; background-position: center;">
+                    <img src="Abundancia-Femenina-Manifestando-con-la-Energia-del-Sagrado-Femenino.pptx.jpg" alt="Mi foto" width="300">
+                </div>
+                <div class="ebook-content">
+                    <h3 class="ebook-title">Abundancia Femenina</h3>
+                    <p>Abundancia femenina: manifestando con la energía del Sagrado Femenino</p>
+                    <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">Ver más</a>
+                </div>
+            </div>
+            <!-- Ebook 3 -->
+            <div class="ebook-card">
+                <div class="ebook-cover" style="background: linear-gradient(rgba(45, 27, 105, 0.7), rgba(15, 26, 58, 0.7)), url('https://images.unsplash.com/photo-1605637061215-0a74c2d35c16?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;">
+                    <div class="ebook-title-overlay">
+                        <h3 class="ebook-title-cover">Journaling para la ansiedad</h3>
+                    </div>
+                </div>
+                <div class="ebook-content">
+                    <h3 class="ebook-title">Journaling para la ansiedad</h3>
+                    <p></p>
+                    <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">Ver más</a>
+                </div>
+            </div>
+            <!-- Ebook 4 -->
+            <div class="ebook-card">
+                <div class="ebook-cover" style="background: linear-gradient(rgba(45, 27, 105, 0.7), rgba(15, 26, 58, 0.7)); background-size: cover; background-position: center;">
+                     <img src="mock up.png" alt="Mi foto" width="300">
+                </div>
+                <div class="ebook-content">
+                    <h3 class="ebook-title">Tu carta natal como brújula interior</h3>
+                    <p>Descubrí tu energía emocional (Luna), Tu propósito evolutivo (Nodo Norte), Tu forma de pensar y comunicar (Mercurio), Tu manera de amar y vincularte (Venus) Y la esencia de quién sos (Sol)</p>
+                    <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">Ver más</a>
+                </div>
+            </div>
+            <!-- Ebook 5 -->
+            <div class="ebook-card">
+                <div class="ebook-cover" style="background: linear-gradient(rgba(45, 27, 105, 0.7), rgba(15, 26, 58, 0.7)); background-size: cover; background-position: center;">
+                    <img src="portada4.jpg" alt="Mi foto" width="300">
+                </div>
+                <div class="ebook-content">
+                    <h3 class="ebook-title">12 Leyes para manifestar</h3>
+                    <p>La Fórmula para Reprogramar tu Energía y Crear Abundancia</p>
+                    <a href="#" class="btn btn-outline" style="width: 100%; text-align: center;">Ver más</a>
+                </div>
+            </div>
+            <!-- Ebook 6 -->
+            
+        </div>
+    </div>
+</section>
+
+    <!-- Testimonios Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Testimonios</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Nunca había comprendido mi carta astral hasta que leí este contenido. Ahora tomo decisiones desde mi intuición y mi vida fluye con una magia increíble."</p>
+                    <p class="testimonial-author">— Marina G., Barcelona</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Los rituales de manifestación funcionan de verdad. He atraído todo lo que mi alma necesitaba: amor, abundancia y paz interior. Eternamente agradecida."</p>
+                    <p class="testimonial-author">— Sofía R., México DF</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Los ebooks de Magic Tarot cambiaron mi vida. Finalmente entiendo mi propósito y me siento conectada con mi verdadero ser."</p>
+                    <p class="testimonial-author">— Elena V., Buenos Aires</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Sobre Mí</h2>
+            <div class="about-container">
+                <div class="about-img">
+                    <!-- Imagen de perfil simulada -->
+                    <div class="profile-img" style="height: 300px; background: linear-gradient(135deg, var(--violeta-claro), var(--azul-nocturno)); display: flex; align-items: center; justify-content: center; color: var(--dorado-claro); font-size: 5rem;">
+                        <img src="Captura.JPG" width="305">
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>Hola, soy Alba</h3>
+                    <p>Desde pequeña sentí una profunda conexión con la magia de las cartas y los símbolos ancestrales. Lo que comenzó como curiosidad se transformó en una pasión por estudiar la sabiduría del tarot y las herramientas energéticas.</p>
+                    <p>Durante más de 10 años he dedicado mi vida a integrar conocimientos de tarot, sanación energética y espiritualidad, creando puentes entre lo místico y nuestro mundo interior.</p>
+                    <p>Mi misión es guiarte para que descubras tu mapa único a través del tarot, equilibres tu energía y vivas una vida alineada con tu esencia más auténtica. Creo firmemente que cada persona tiene un propósito mágico y juntos podemos desvelarlo.</p>
+                    <p>Te invito a que emprendamos este viaje de autodescubrimiento y transformación con Magic Tarot.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <div class="faq-container">
+                <div class="faq-item active">
+                    <div class="faq-question">¿Necesito conocimientos previos de tarot? <span>+</span></div>
+                    <div class="faq-answer">No, todos mis recursos están diseñados para ser accesibles. Incluyo guías para principiantes y explicaciones claras de los conceptos básicos del tarot.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Los ebooks son físicos o digitales? <span>+</span></div>
+                    <div class="faq-answer">Todos los ebooks son digitales (formato PDF), para que puedas acceder a ellos inmediatamente después de la compra y llevarlos contigo en cualquier dispositivo.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Qué necesito para comenzar con el tarot? <span>+</span></div>
+                    <div class="faq-answer">Solo necesitas una baraja de tarot básica y la disposición para aprender. El resto lo proporcionamos en las guías, incluyendo explicaciones paso a paso.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Ofreces lecturas personalizadas? <span>+</span></div>
+                    <div class="faq-answer">Sí, además de los ebooks, ofrezco lecturas de tarot personalizadas. Puedes contactarme a través del formulario en la sección de contacto.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Cómo sé qué ebook es el adecuado para mí? <span>+</span></div>
+                    <div class="faq-answer">Cada ebook incluye una descripción detallada de su contenido. Si tienes dudas, puedes escribirme y te ayudo a identificar cuál se alinea mejor con tu momento actual.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final Section -->
+    <section class="cta-final">
+        <div class="container">
+            <h2>Tu Transformación Espiritual Comienza Aquí</h2>
+            <p>Descubre la magia del tarot y da el primer paso hacia una vida más consciente y alineada.</p>
+            <a href="#ebooks" class="btn" style="margin-top: 30px;">Comenzar Mi Viaje</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">Magic Tarot</div>
+                    <p>Tarot, energía y bienestar holístico para tu transformación interior.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="#hero">Inicio</a></li>
+                        <li><a href="#ebooks">eBooks</a></li>
+                        <li><a href="#about">Sobre mí</a></li>
+                        <li><a href="#testimonials">Testimonios</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Sígueme</h4>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/magictarot_77/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/magictarot77"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="https://www.youtube.com/@magictarot77"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <p style="margin-top: 20px;">contacto@magictarot.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Magic Tarot. Todos los derechos reservados.</p>
+                <p><a href="#" style="color: rgba(255,255,255,0.5);">Política de privacidad</a> | <a href="#" style="color: rgba(255,255,255,0.5);">Términos y condiciones</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Crear estrellas de fondo
+        document.addEventListener('DOMContentLoaded', function() {
+            const starsBg = document.getElementById('stars-bg');
+            const starsCount = 150;
+            
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Tamaño aleatorio
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Posición aleatoria
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Opacidad aleatoria
+                star.style.opacity = Math.random() * 0.7 + 0.3;
+                
+                // Animación de parpadeo
+                const duration = Math.random() * 5 + 3;
+                star.style.animation = `twinkle ${duration}s infinite alternate`;
+                
+                starsBg.appendChild(star);
+            }
+            
+            // Añadir estilo de animación para las estrellas
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes twinkle {
+                    0% { opacity: 0.3; }
+                    100% { opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // FAQ interactivo
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentElement;
+                    item.classList.toggle('active');
+                    
+                    // Cambiar el símbolo
+                    const span = question.querySelector('span');
+                    span.textContent = item.classList.contains('active') ? '−' : '+';
+                });
+            });
+            
+            // Header scroll effect
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+            });
+            
+            // Mobile menu
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileNav = document.getElementById('mobile-nav');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const navOverlay = document.getElementById('nav-overlay');
+            
+            // Abrir menú
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileNav.classList.add('active');
+                navOverlay.classList.add('active');
+                mobileNav.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Cerrar menú (botón X)
+            mobileMenuClose.addEventListener('click', function() {
+                closeMobileMenu();
+            });
+            
+            // Cerrar menú (overlay)
+            navOverlay.addEventListener('click', function() {
+                closeMobileMenu();
+            });
+            
+            // Cerrar menú al hacer clic en un enlace
+            const mobileNavLinks = mobileNav.querySelectorAll('a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    closeMobileMenu();
+                });
+            });
+            
+            // Cerrar menú con tecla Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+            
+            // Función para cerrar menú
+            function closeMobileMenu() {
+                mobileNav.classList.remove('active');
+                navOverlay.classList.remove('active');
+                mobileNav.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+            
+            // Smooth scroll para enlaces internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
